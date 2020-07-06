@@ -4,19 +4,7 @@
 #include "Public_Value.h"
 
 /***********************************************************************
-È«¾Ö±äÁ¿µÄbit·ÖÅä
-------------------------------------------------------------------------
-Name							bit					Defination
-------------------------------------------------------------------------
-Task_Flag	  					7					reserved
-								6					reserved
-								5					reserved
-								4					reserved
-								3					USART_Control
-								2					KEY_SCAN
-								1					LED_Display
-								0					ADC_Voltage
-------------------------------------------------------------------------
+å…¨å±€å˜é‡çš„Tsk_Flg
 ************************************************************************/
 Task_Flag Tsk_Flg;
 
@@ -25,26 +13,26 @@ static void TIM1_Init(u16 arr, u16 psc);
 
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£º¶¨Ê±Æ÷Ä£¿éµÄ³õÊ¼»¯
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šå®šæ—¶å™¨æ¨¡å—çš„åˆå§‹åŒ–
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 void MTIMER_Init(void)
 {
 	TskFlg_Init();
 	TIM1_Init(TIMER_PRSC, TIMER_PERD);
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); //ÉèÖÃNVICÖĞ¶Ï·Ö×é2:2Î»ÇÀÕ¼ÓÅÏÈ¼¶£¬2Î»ÏìÓ¦ÓÅÏÈ¼¶
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); //è®¾ç½®NVICä¸­æ–­åˆ†ç»„2:2ä½æŠ¢å ä¼˜å…ˆçº§ï¼Œ2ä½å“åº”ä¼˜å…ˆçº§
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£º¶¨Ê±Æ÷ÂÖÑ¯±êÖ¾Î»µÄ³õÊ¼»¯
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šå®šæ—¶å™¨è½®è¯¢æ ‡å¿—ä½çš„åˆå§‹åŒ–
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 static void TskFlg_Init(void)
@@ -59,11 +47,11 @@ static void TskFlg_Init(void)
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£º¸ß¼¶¶¨Ê±Æ÷TIM1³õÊ¼»¯
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30 
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šé«˜çº§å®šæ—¶å™¨TIM1åˆå§‹åŒ–
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30 
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 static void TIM1_Init(u16 arr, u16 psc)
@@ -71,37 +59,37 @@ static void TIM1_Init(u16 arr, u16 psc)
 	TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
 	NVIC_InitTypeDef NVIC_InitStructure;
 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE); //Ê±ÖÓÊ¹ÄÜ
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE); //æ—¶é’Ÿä½¿èƒ½
 	
-	//¶¨Ê±Æ÷TIM1³õÊ¼»¯
-	TIM_TimeBaseStructure.TIM_Period = arr; //ÉèÖÃÔÚÏÂÒ»¸ö¸üĞÂÊÂ¼ş×°Èë»î¶¯µÄ×Ô¶¯ÖØ×°ÔØ¼Ä´æÆ÷ÖÜÆÚµÄÖµ	
-	TIM_TimeBaseStructure.TIM_Prescaler =psc; //ÉèÖÃÓÃÀ´×÷ÎªTIMxÊ±ÖÓÆµÂÊ³ıÊıµÄÔ¤·ÖÆµÖµ
-	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //ÉèÖÃÊ±ÖÓ·Ö¸î:TDTS = Tck_tim
-	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIMÏòÉÏ¼ÆÊıÄ£Ê½ 
-	TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;//ÖØ¸´¼ÆÊıÉèÖÃ£¬ÕâÀïÖµ¾ö¶¨¶àÉÙ´Î¼ÆÊı²Å½øÈëÖĞ¶Ï£¬´ËÊ±¼ÆÊıÒ»´Î½øÈëÖĞ¶Ï
-	TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure); //¸ù¾İÖ¸¶¨µÄ²ÎÊı³õÊ¼»¯TIMxµÄÊ±¼ä»ùÊıµ¥Î»
+	//å®šæ—¶å™¨TIM1åˆå§‹åŒ–
+	TIM_TimeBaseStructure.TIM_Period = arr; //è®¾ç½®åœ¨ä¸‹ä¸€ä¸ªæ›´æ–°äº‹ä»¶è£…å…¥æ´»åŠ¨çš„è‡ªåŠ¨é‡è£…è½½å¯„å­˜å™¨å‘¨æœŸçš„å€¼	
+	TIM_TimeBaseStructure.TIM_Prescaler =psc; //è®¾ç½®ç”¨æ¥ä½œä¸ºTIMxæ—¶é’Ÿé¢‘ç‡é™¤æ•°çš„é¢„åˆ†é¢‘å€¼
+	TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; //è®¾ç½®æ—¶é’Ÿåˆ†å‰²:TDTS = Tck_tim
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;  //TIMå‘ä¸Šè®¡æ•°æ¨¡å¼ 
+	TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;//é‡å¤è®¡æ•°è®¾ç½®ï¼Œè¿™é‡Œå€¼å†³å®šå¤šå°‘æ¬¡è®¡æ•°æ‰è¿›å…¥ä¸­æ–­ï¼Œæ­¤æ—¶è®¡æ•°ä¸€æ¬¡è¿›å…¥ä¸­æ–­
+	TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure); //æ ¹æ®æŒ‡å®šçš„å‚æ•°åˆå§‹åŒ–TIMxçš„æ—¶é—´åŸºæ•°å•ä½
  
-	TIM_ClearFlag(TIM1, TIM_FLAG_Update);     //Çå³ıÖĞ¶Ï±êÖ¾Î»£¬·ÀÖ¹¿ªÆôÖĞ¶Ï¾Í½øÈëÒ»´ÎÖĞ¶Ï
-	TIM_ITConfig(TIM1,TIM_IT_Update,ENABLE ); //Ê¹ÄÜÖ¸¶¨µÄTIM3ÖĞ¶Ï,ÔÊĞí¸üĞÂÖĞ¶Ï
+	TIM_ClearFlag(TIM1, TIM_FLAG_Update);     //æ¸…é™¤ä¸­æ–­æ ‡å¿—ä½ï¼Œé˜²æ­¢å¼€å¯ä¸­æ–­å°±è¿›å…¥ä¸€æ¬¡ä¸­æ–­
+	TIM_ITConfig(TIM1,TIM_IT_Update,ENABLE ); //ä½¿èƒ½æŒ‡å®šçš„TIM3ä¸­æ–­,å…è®¸æ›´æ–°ä¸­æ–­
 
-	//ÖĞ¶ÏÓÅÏÈ¼¶NVICÉèÖÃ
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); 	 //ÉèÖÃNVICÖĞ¶Ï·Ö×é2:2Î»ÇÀÕ¼ÓÅÏÈ¼¶£¬2Î»ÏìÓ¦ÓÅÏÈ¼¶
-	NVIC_InitStructure.NVIC_IRQChannel = TIM1_UP_IRQn;  //TIM1ÖĞ¶Ï
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;  //ÏÈÕ¼ÓÅÏÈ¼¶0¼¶
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;  //´ÓÓÅÏÈ¼¶3¼¶
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQÍ¨µÀ±»Ê¹ÄÜ
-	NVIC_Init(&NVIC_InitStructure);  //³õÊ¼»¯NVIC¼Ä´æÆ÷
+	//ä¸­æ–­ä¼˜å…ˆçº§NVICè®¾ç½®
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2); 	 //è®¾ç½®NVICä¸­æ–­åˆ†ç»„2:2ä½æŠ¢å ä¼˜å…ˆçº§ï¼Œ2ä½å“åº”ä¼˜å…ˆçº§
+	NVIC_InitStructure.NVIC_IRQChannel = TIM1_UP_IRQn;  //TIM1ä¸­æ–­
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;  //å…ˆå ä¼˜å…ˆçº§0çº§
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 3;  //ä»ä¼˜å…ˆçº§3çº§
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE; //IRQé€šé“è¢«ä½¿èƒ½
+	NVIC_Init(&NVIC_InitStructure);  //åˆå§‹åŒ–NVICå¯„å­˜å™¨
 
 
-	TIM_Cmd(TIM1, ENABLE);  //Ê¹ÄÜTIMx
+	TIM_Cmd(TIM1, ENABLE);  //ä½¿èƒ½TIMx
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£º¸ß¼¶¶¨Ê±Æ÷TIM1µÄÖĞ¶Ï´¦Àíº¯Êı
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/5/30
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šé«˜çº§å®šæ—¶å™¨TIM1çš„ä¸­æ–­å¤„ç†å‡½æ•°
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/5/30
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 void TIM1_UP_IRQHandler(void) 
@@ -111,11 +99,11 @@ void TIM1_UP_IRQHandler(void)
 	static u8 Tsk100ms_Cnt = 0;
 	//static u8 Tsk1000ms_Cnt = 0;
 	
-	if (TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)//¼ì²éÖ¸¶¨µÄTIMÖĞ¶Ï·¢ÉúÓë·ñ:TIM ÖĞ¶ÏÔ´ 
+	if (TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)//æ£€æŸ¥æŒ‡å®šçš„TIMä¸­æ–­å‘ç”Ÿä¸å¦:TIM ä¸­æ–­æº 
 	{
-		TIM_ClearITPendingBit(TIM1, TIM_IT_Update);//Çå³ıTIMxµÄÖĞ¶Ï´ı´¦ÀíÎ»:TIM ÖĞ¶ÏÔ´ 
+		TIM_ClearITPendingBit(TIM1, TIM_IT_Update);//æ¸…é™¤TIMxçš„ä¸­æ–­å¾…å¤„ç†ä½:TIM ä¸­æ–­æº 
 		
-		/****433MÄ£¿é&°´¼üÄ£¿é 10msÈÎÎñ¶¨Ê±ÂÖÑ¯µÄflag****/
+		/****433Mæ¨¡å—&æŒ‰é”®æ¨¡å— 10msä»»åŠ¡å®šæ—¶è½®è¯¢çš„flag****/
 		Tsk10ms_Cnt++;
 		if(Tsk10ms_Cnt >= Task1_Cnt)
 		{
@@ -128,7 +116,7 @@ void TIM1_UP_IRQHandler(void)
 			//do nothing
 		}
 		
-		/*****Ò¡¸Ëµ²Î»µÄ¼ì²âÄ£¿é20msÈÎÎñ¶¨Ê±ÂÖÑ¯µÄflag*****/
+		/*****æ‘‡æ†æŒ¡ä½çš„æ£€æµ‹æ¨¡å—20msä»»åŠ¡å®šæ—¶è½®è¯¢çš„flag*****/
 		Tsk20ms_Cnt++;
 		if(Tsk20ms_Cnt >= Task2_Cnt)
 		{
@@ -141,7 +129,7 @@ void TIM1_UP_IRQHandler(void)
 			//do nothing
 		}
 		
-		/****µçÁ¿ÏÔÊ¾Ä£¿é1000msÈÎÎñ¶¨Ê±ÂÖÑ¯µÄflag****/
+		/****ç”µé‡æ˜¾ç¤ºæ¨¡å—1000msä»»åŠ¡å®šæ—¶è½®è¯¢çš„flag****/
 		Tsk100ms_Cnt++;
 		if(Tsk100ms_Cnt >= Task3_Cnt)
 		{
