@@ -28,8 +28,8 @@ void MADC_Init(void);
 //void STERMode_Anly(void);
 //u16 R_BatVol(void);
 
-//测试
-extern u16 ADC_Conversion_Value[5];       //ADC采集值存储的数组
+//娴嬭瘯
+extern u16 ADC_Conversion_Value[5]; 
 
 typedef struct
 {
