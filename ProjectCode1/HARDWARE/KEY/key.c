@@ -2,17 +2,16 @@
 #include "sys.h" 
 #include "Public_Value.h"
 
-static void MKEY_Init(void);
 static void KEY_Init(void); 
 static u8 Get_KEY_State(u8 Key_Type, u16 time);
 
 								    
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºKEYÄ£¿éµÄ»Øµ÷º¯Êı£¬100ms task
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/6/10
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šKEYæ¨¡å—çš„å›è°ƒå‡½æ•°ï¼Œ100ms task
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/6/10
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 void MKEY_CallBack(void)
@@ -21,71 +20,71 @@ void MKEY_CallBack(void)
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºKEYÄ£¿éµÄ³õÊ¼»¯
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/6/10
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šKEYæ¨¡å—çš„åˆå§‹åŒ–
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/6/10
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
-static void MKEY_Init(void)
+void MKEY_Init(void)
 {
 	KEY_Init();
 	
-	#if TEST_START
+	#if TEST_
 		TestKeyInit();
 	#endif
 }
 
-//²âÊÔ
+//æµ‹è¯•
 #if TEST_END
 	void TestKeyInit(void)
 	{
 		GPIO_InitTypeDef GPIO_InitStructure;
  
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);   //Ê¹ÄÜPORTAÊ±ÖÓ
+		RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);   //ä½¿èƒ½PORTAæ—¶é’Ÿ
 		GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_4;              
-		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;           //ÉèÖÃ³ÉÉÏÀ­ÊäÈë
+		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;           //è®¾ç½®æˆä¸Šæ‹‰è¾“å…¥
 		GPIO_Init(GPIOE, &GPIO_InitStructure);
 	}
 #endif
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£ºMotor_Stop_KEY³õÊ¼»¯ÅäÖÃ
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/6/10
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šMotor_Stop_KEYåˆå§‹åŒ–é…ç½®
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/6/10
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 *******************************************************************/
 
 static void KEY_Init(void) 
 { 
  	GPIO_InitTypeDef GPIO_InitStructure;
  
- 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOA, ENABLE);   //Ê¹ÄÜPORTAÊ±ÖÓ
+ 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOA, ENABLE);   //ä½¿èƒ½PORTAæ—¶é’Ÿ
 
 	GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14;              
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;           //ÉèÖÃ³ÉÉÏÀ­ÊäÈë
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;           //è®¾ç½®æˆä¸Šæ‹‰è¾“å…¥
  	GPIO_Init(GPIOB, &GPIO_InitStructure);
 
 	GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_4 | GPIO_Pin_5;              
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;           //ÉèÖÃ³ÉÉÏÀ­ÊäÈë
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;           //è®¾ç½®æˆä¸Šæ‹‰è¾“å…¥
  	GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£º·Ç×èÈûÊ½µÄ°´¼üÊ¶±ğ
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/6/10
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šéé˜»å¡å¼çš„æŒ‰é”®è¯†åˆ«
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/6/10
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 				  
 *******************************************************************/
 
 static u8 Get_KEY_State(u8 Key_Type, u16 time)
 {
-		static u8 Key_State = N_KEY_State;         //°´¼ü×´Ì¬³õÊ¼»¯
-    static u8 Key_Return = N_KEY;                //°´¼ü·µ»ØÖµ³õÊ¼»¯
+		static u8 Key_State = N_KEY_State;         //æŒ‰é”®çŠ¶æ€åˆå§‹åŒ–
+    static u8 Key_Return = N_KEY;                //æŒ‰é”®è¿”å›å€¼åˆå§‹åŒ–
     static u16 num = 0;
     
     switch(Key_State)
@@ -96,7 +95,7 @@ static u8 Get_KEY_State(u8 Key_Type, u16 time)
             
             if(Key_Type == 0)
             {
-                Key_State = S_KEY_State;                   //°´¼üÏû¶¶£¬ÏµÍ³Ö´ĞĞÒ»¸öÓï¾äµÄÊ±¼ä
+                Key_State = S_KEY_State;                   //æŒ‰é”®æ¶ˆæŠ–ï¼Œç³»ç»Ÿæ‰§è¡Œä¸€ä¸ªè¯­å¥çš„æ—¶é—´
             }
             
             break;
@@ -106,7 +105,7 @@ static u8 Get_KEY_State(u8 Key_Type, u16 time)
         {
             if(Key_Type == 0)
             {
-                Key_State = L_KEY_State;                //°´¼ü½Ó×ÅÏû¶¶£¬ÏµÍ³Ö´ĞĞÒ»¸öÓï¾äµÄÊ±¼ä
+                Key_State = L_KEY_State;                //æŒ‰é”®æ¥ç€æ¶ˆæŠ–ï¼Œç³»ç»Ÿæ‰§è¡Œä¸€ä¸ªè¯­å¥çš„æ—¶é—´
             }
             else
             {
@@ -118,7 +117,7 @@ static u8 Get_KEY_State(u8 Key_Type, u16 time)
         
         case L_KEY_State:
         {        
-            if((Key_Type == 1) && (Key_Return == N_KEY))        //·ÀÖ¹°´¼ü³¤°´ÊÍ·Åºó£¬Îó½øÈë¶Ì°´×´Ì¬£¬ËùÒÔ¼ÓÁËÒ»¸öKey_ReturnÌõ¼ş
+            if((Key_Type == 1) && (Key_Return == N_KEY))        //é˜²æ­¢æŒ‰é”®é•¿æŒ‰é‡Šæ”¾åï¼Œè¯¯è¿›å…¥çŸ­æŒ‰çŠ¶æ€ï¼Œæ‰€ä»¥åŠ äº†ä¸€ä¸ªKey_Returnæ¡ä»¶
             {
                 Key_Return = S_KEY;
                 Key_State = N_KEY_State;
@@ -129,7 +128,7 @@ static u8 Get_KEY_State(u8 Key_Type, u16 time)
             {
                 num++;
                 
-                if(num >= time)                           //¿ÉÒÔÍ¨¹ıĞŞ¸ÄÈë¿Ú²ÎÊıtimeµÄ´óĞ¡£¬À´µ÷Õû³¤°´µÄÊ±¼ä£¬time = 20Ê±£¬Ê±³¤Ô¼1s
+                if(num >= time)                           //å¯ä»¥é€šè¿‡ä¿®æ”¹å…¥å£å‚æ•°timeçš„å¤§å°ï¼Œæ¥è°ƒæ•´é•¿æŒ‰çš„æ—¶é—´ï¼Œtime = 20æ—¶ï¼Œæ—¶é•¿çº¦1s
                 {
                     Key_Return = L_KEY;
                     num = 0;
@@ -140,7 +139,7 @@ static u8 Get_KEY_State(u8 Key_Type, u16 time)
 				}
             }
             
-            else if((Key_Type == 1) && (Key_Return == L_KEY))  //µÈ´ı°´¼ü³¤°´ºóÊÍ·Å
+            else if((Key_Type == 1) && (Key_Return == L_KEY))  //ç­‰å¾…æŒ‰é”®é•¿æŒ‰åé‡Šæ”¾
             {
                 Key_State = N_KEY_State;              
             }
@@ -163,11 +162,11 @@ static u8 Get_KEY_State(u8 Key_Type, u16 time)
 }
 
 /*******************************************************************
-³ÌĞò¹¦ÄÜ£º°´¼üÉ¨Ãè£¬¶Ì°´enable£¬³¤°´disable
-³ÌĞò°æ±¾£ºV1.0
-ÈÕ    ÆÚ£º 2019/6/10
-×÷    Õß£ºOrange
-ĞŞ    ¸Ä£ºÎŞ
+ç¨‹åºåŠŸèƒ½ï¼šæŒ‰é”®æ‰«æï¼ŒçŸ­æŒ‰enableï¼Œé•¿æŒ‰disable
+ç¨‹åºç‰ˆæœ¬ï¼šV1.0
+æ—¥    æœŸï¼š 2019/6/10
+ä½œ    è€…ï¼šOrange
+ä¿®    æ”¹ï¼šæ— 
 				  
 *******************************************************************/
 
@@ -213,11 +212,11 @@ u8 KEY_Scan(void)
 	
 	if(S_KEY == Get_KEY_State(Stop_KEY, KDelay_Time))
 	{
-		Key_Sts |= 0x40;                      //ÖÃÎ»
+		Key_Sts |= 0x40;                      //ç½®ä½
 	}
 	else if(L_KEY == Get_KEY_State(Stop_KEY, KDelay_Time))
 	{
-		Key_Sts &= 0xbf;                      //ÇåÁã
+		Key_Sts &= 0xbf;                      //æ¸…é›¶
 	}
 
 	
