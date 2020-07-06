@@ -3,24 +3,24 @@
 #include "Public_Value.h"
 
 /***********************************************************************
-»´æ÷±‰¡øµƒbit∑÷≈‰
+ÂÖ®Â±ÄÂèòÈáèÁöÑbitÂàÜÈÖç
 ------------------------------------------------------------------------
-Name								bit					Defination
+Name		bit					Defination
 ------------------------------------------------------------------------
-Task_Flag	  						7					BAT_FULVOL
-									6					BAT_HIGVOL
-									5					BAT_MIDVOL
-									4					BAT_LOWVOL
-									3					M4_OVERCUR
-									2					M3_OVERCUR
-									1					M2_OVERCUR
-									0					M1_OVERCUR
+Task_Flag	7					BAT_FULVOL
+		6					BAT_HIGVOL
+		5					BAT_MIDVOL
+		4					BAT_LOWVOL
+		3					M4_OVERCUR
+		2					M3_OVERCUR
+		1					M2_OVERCUR
+		0					M1_OVERCUR
 ------------------------------------------------------------------------
 ************************************************************************/
 //ADC_FLAG ADCMont_Flg;
 //u8 *pADCFlg = (u8*)&ADCMont_Flg;
 
-//¥¥Ω®µƒ»´æ÷±‰¡ø
+//ÂàõÂª∫ÁöÑÂÖ®Â±ÄÂèòÈáè
 TX_Mode T_Data;
 u8 *pADC_Data = (u8*)&T_Data;
 /*
@@ -43,7 +43,7 @@ typedef enum
 	NUM
 }eADC_Cnt;
 
-u16 ADC_Conversion_Value[NUM];       //ADC≤…ºØ÷µ¥Ê¥¢µƒ ˝◊È
+u16 ADC_Conversion_Value[NUM];       //ADCÈááÈõÜÂÄºÂ≠òÂÇ®ÁöÑÊï∞ÁªÑ
 
 static void ADC1_GPIO_Config(void);
 static void ADC1_Config(void);
@@ -57,11 +57,11 @@ static u16 R_BatVol(void);
 
 
 /*******************************************************************
-≥Ã–Úπ¶ƒ‹£∫AD≤…ºØµƒªÿµ˜∫Ø ˝£¨100ms task
-≥Ã–Ú∞Ê±æ£∫V1.0
-»’    ∆⁄£∫ 2019/5/30 
-◊˜    ’ﬂ£∫Orange
-–ﬁ    ∏ƒ£∫Œﬁ
+Á®ãÂ∫èÂäüËÉΩÔºöADÈááÈõÜÁöÑÂõûË∞ÉÂáΩÊï∞Ôºå100ms task
+Á®ãÂ∫èÁâàÊú¨ÔºöV1.0
+Êó•    ÊúüÔºö 2019/5/30 
+‰Ωú    ËÄÖÔºöOrange
+‰øÆ    ÊîπÔºöÊó†
 *******************************************************************/
 
 void MADC_CallBack(void)
@@ -73,11 +73,11 @@ void MADC_CallBack(void)
 }
 
 /*******************************************************************
-≥Ã–Úπ¶ƒ‹£∫ADCƒ£øÈµƒ≥ı ºªØ
-≥Ã–Ú∞Ê±æ£∫V1.0
-»’    ∆⁄£∫ 2019/5/30 
-◊˜    ’ﬂ£∫Orange
-–ﬁ    ∏ƒ£∫Œﬁ
+Á®ãÂ∫èÂäüËÉΩÔºöADCÊ®°ÂùóÁöÑÂàùÂßãÂåñ
+Á®ãÂ∫èÁâàÊú¨ÔºöV1.0
+Êó•    ÊúüÔºö 2019/5/30 
+‰Ωú    ËÄÖÔºöOrange
+‰øÆ    ÊîπÔºöÊó†
 *******************************************************************/
 
 void MADC_Init(void)
@@ -89,11 +89,11 @@ void MADC_Init(void)
 }
 
 /*******************************************************************
-≥Ã–Úπ¶ƒ‹£∫ADC1µƒGPIO≈‰÷√
-≥Ã–Ú∞Ê±æ£∫V1.0
-»’    ∆⁄£∫ 2019/5/30 
-◊˜    ’ﬂ£∫Orange
-–ﬁ    ∏ƒ£∫Œﬁ
+Á®ãÂ∫èÂäüËÉΩÔºöADC1ÁöÑGPIOÈÖçÁΩÆ
+Á®ãÂ∫èÁâàÊú¨ÔºöV1.0
+Êó•    ÊúüÔºö 2019/5/30 
+‰Ωú    ËÄÖÔºöOrange
+‰øÆ    ÊîπÔºöÊó†
 *******************************************************************/
 
 static void ADC1_GPIO_Config(void)
@@ -107,29 +107,29 @@ static void ADC1_GPIO_Config(void)
 }
  
 /*******************************************************************
-≥Ã–Úπ¶ƒ‹£∫ADC1≈‰÷√
-≥Ã–Ú∞Ê±æ£∫V1.0
-»’    ∆⁄£∫ 2019/5/30 
-◊˜    ’ﬂ£∫Orange
-–ﬁ    ∏ƒ£∫Œﬁ
+Á®ãÂ∫èÂäüËÉΩÔºöADC1ÈÖçÁΩÆ
+Á®ãÂ∫èÁâàÊú¨ÔºöV1.0
+Êó•    ÊúüÔºö 2019/5/30 
+‰Ωú    ËÄÖÔºöOrange
+‰øÆ    ÊîπÔºöÊó†
 *******************************************************************/
 
 static void ADC1_Config(void)
 {
 	ADC_InitTypeDef ADC_InitStructure;
 	
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);	  // πƒ‹ADC1Õ®µ¿ ±÷”
-	RCC_ADCCLKConfig(RCC_PCLK2_Div6);   //…Ë÷√ADC∑÷∆µ“Ú◊”6 72M/6=12,ADC◊Ó¥Û ±º‰≤ªƒ‹≥¨π˝14M
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);	  //‰ΩøËÉΩADC1ÈÄöÈÅìÊó∂Èíü
+	RCC_ADCCLKConfig(RCC_PCLK2_Div6);   //ËÆæÁΩÆADCÂàÜÈ¢ëÂõ†Â≠ê6 72M/6=12,ADCÊúÄÂ§ßÊó∂Èó¥‰∏çËÉΩË∂ÖËøá14M
 
-	ADC_DeInit(ADC1);  //∏¥ŒªADC1 
+	ADC_DeInit(ADC1);  //Â§ç‰ΩçADC1 
 
-	ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;	//ADCπ§◊˜ƒ£ Ω:ADC1∫ÕADC2π§◊˜‘⁄∂¿¡¢ƒ£ Ω
-	ADC_InitStructure.ADC_ScanConvMode = ENABLE;	      //ƒ£ ˝◊™ªªπ§◊˜‘⁄…®√Ëƒ£ Ω
-	ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;	//ƒ£ ˝◊™ªªπ§◊˜‘⁄µ•¥Œ◊™ªªƒ£ Ω
-	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;	//◊™ªª”…»Ìº˛∂¯≤ª «Õ‚≤ø¥•∑¢∆Ù∂Ø
-	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;	//ADC ˝æ›”“∂‘∆Î
-	ADC_InitStructure.ADC_NbrOfChannel = 5;	//À≥–ÚΩ¯––πÊ‘Ú◊™ªªµƒADCÕ®µ¿µƒ ˝ƒø
-	ADC_Init(ADC1, &ADC_InitStructure);	//∏˘æ›ADC_InitStruct÷–÷∏∂®µƒ≤Œ ˝≥ı ºªØÕ‚…ËADCxµƒºƒ¥Ê∆˜ 
+	ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;	//ADCÂ∑•‰ΩúÊ®°Âºè:ADC1ÂíåADC2Â∑•‰ΩúÂú®Áã¨Á´ãÊ®°Âºè
+	ADC_InitStructure.ADC_ScanConvMode = ENABLE;	      //Ê®°Êï∞ËΩ¨Êç¢Â∑•‰ΩúÂú®Êâ´ÊèèÊ®°Âºè
+	ADC_InitStructure.ADC_ContinuousConvMode = DISABLE;	//Ê®°Êï∞ËΩ¨Êç¢Â∑•‰ΩúÂú®ÂçïÊ¨°ËΩ¨Êç¢Ê®°Âºè
+	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;	//ËΩ¨Êç¢Áî±ËΩØ‰ª∂ËÄå‰∏çÊòØÂ§ñÈÉ®Ëß¶ÂèëÂêØÂä®
+	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;	//ADCÊï∞ÊçÆÂè≥ÂØπÈΩê
+	ADC_InitStructure.ADC_NbrOfChannel = 5;	//È°∫Â∫èËøõË°åËßÑÂàôËΩ¨Êç¢ÁöÑADCÈÄöÈÅìÁöÑÊï∞ÁõÆ
+	ADC_Init(ADC1, &ADC_InitStructure);	//Ê†πÊçÆADC_InitStruct‰∏≠ÊåáÂÆöÁöÑÂèÇÊï∞ÂàùÂßãÂåñÂ§ñËÆæADCxÁöÑÂØÑÂ≠òÂô® 
 
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_10, 1, ADC_SampleTime_239Cycles5);
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_11, 2, ADC_SampleTime_239Cycles5);
@@ -138,55 +138,55 @@ static void ADC1_Config(void)
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_14, 5, ADC_SampleTime_239Cycles5);
 	
 	ADC_DMACmd(ADC1, ENABLE);
-	ADC_Cmd(ADC1, ENABLE);	    // πƒ‹÷∏∂®µƒADC1
+	ADC_Cmd(ADC1, ENABLE);	    //‰ΩøËÉΩÊåáÂÆöÁöÑADC1
 	
-	ADC_ResetCalibration(ADC1);	// πƒ‹∏¥Œª–£◊º  
+	ADC_ResetCalibration(ADC1);	//‰ΩøËÉΩÂ§ç‰ΩçÊ†°ÂáÜ  
 	 
-	while(ADC_GetResetCalibrationStatus(ADC1));	//µ»¥˝∏¥Œª–£◊ºΩ· ¯
+	while(ADC_GetResetCalibrationStatus(ADC1));	//Á≠âÂæÖÂ§ç‰ΩçÊ†°ÂáÜÁªìÊùü
 	
-	ADC_StartCalibration(ADC1);	 //ø™∆ÙAD–£◊º
+	ADC_StartCalibration(ADC1);	 //ÂºÄÂêØADÊ†°ÂáÜ
  
-	while(ADC_GetCalibrationStatus(ADC1));	 //µ»¥˝–£◊ºΩ· ¯
+	while(ADC_GetCalibrationStatus(ADC1));	 //Á≠âÂæÖÊ†°ÂáÜÁªìÊùü
 	
 }
 
 /*******************************************************************
-≥Ã–Úπ¶ƒ‹£∫ADC1_DMA≈‰÷√
-≥Ã–Ú∞Ê±æ£∫V1.0
-»’    ∆⁄£∫ 2019/5/30 
-◊˜    ’ﬂ£∫Orange
-–ﬁ    ∏ƒ£∫Œﬁ
+Á®ãÂ∫èÂäüËÉΩÔºöADC1_DMAÈÖçÁΩÆ
+Á®ãÂ∫èÁâàÊú¨ÔºöV1.0
+Êó•    ÊúüÔºö 2019/5/30 
+‰Ωú    ËÄÖÔºöOrange
+‰øÆ    ÊîπÔºöÊó†
 *******************************************************************/
 
 static void ADC1_DMA_Config(void)
 {
 	DMA_InitTypeDef DMA_InitStructure;
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);	// πƒ‹DMA¥´ ‰
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);	//‰ΩøËÉΩDMA‰º†Ëæì
 	
-	DMA_DeInit(DMA1_Channel1);   //Ω´DMAµƒÕ®µ¿1ºƒ¥Ê∆˜÷ÿ…ËŒ™»± °÷µ
+	DMA_DeInit(DMA1_Channel1);   //Â∞ÜDMAÁöÑÈÄöÈÅì1ÂØÑÂ≠òÂô®ÈáçËÆæ‰∏∫Áº∫ÁúÅÂÄº
 
-	DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)(&(ADC1 -> DR));  //DMAÕ‚…Ëª˘µÿ÷∑
-	DMA_InitStructure.DMA_MemoryBaseAddr = (u32)&(ADC_Conversion_Value[0]);  //DMAƒ⁄¥Êª˘µÿ÷∑
-	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;  // ˝æ›¥´ ‰∑ΩœÚ£¨¥”Õ‚…ËµΩƒ⁄¥Ê
-	DMA_InitStructure.DMA_BufferSize = 5;  //DMAÕ®µ¿µƒDMAª∫¥Êµƒ¥Û–°
-	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;  //Õ‚…Ëµÿ÷∑ºƒ¥Ê∆˜≤ª±‰
-	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;  //ƒ⁄¥Êµÿ÷∑ºƒ¥Ê∆˜µ›‘ˆ
-	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;  // ˝æ›øÌ∂»Œ™16Œª
-	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;      // ˝æ›øÌ∂»Œ™16Œª
-	DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;  //π§◊˜‘⁄—≠ª∑ƒ£ Ω
-	DMA_InitStructure.DMA_Priority = DMA_Priority_High; //DMAÕ®µ¿ x”µ”–∏ﬂ”≈œ»º∂ 
-	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;  //DMAÕ®µ¿x√ª”–…Ë÷√Œ™ƒ⁄¥ÊµΩƒ⁄¥Ê¥´ ‰
+	DMA_InitStructure.DMA_PeripheralBaseAddr = (u32)(&(ADC1 -> DR));  //DMAÂ§ñËÆæÂü∫Âú∞ÂùÄ
+	DMA_InitStructure.DMA_MemoryBaseAddr = (u32)&(ADC_Conversion_Value[0]);  //DMAÂÜÖÂ≠òÂü∫Âú∞ÂùÄ
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;  //Êï∞ÊçÆ‰º†ËæìÊñπÂêëÔºå‰ªéÂ§ñËÆæÂà∞ÂÜÖÂ≠ò
+	DMA_InitStructure.DMA_BufferSize = 5;  //DMAÈÄöÈÅìÁöÑDMAÁºìÂ≠òÁöÑÂ§ßÂ∞è
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;  //Â§ñËÆæÂú∞ÂùÄÂØÑÂ≠òÂô®‰∏çÂèò
+	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;  //ÂÜÖÂ≠òÂú∞ÂùÄÂØÑÂ≠òÂô®ÈÄíÂ¢û
+	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;  //Êï∞ÊçÆÂÆΩÂ∫¶‰∏∫16‰Ωç
+	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;      //Êï∞ÊçÆÂÆΩÂ∫¶‰∏∫16‰Ωç
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;  //Â∑•‰ΩúÂú®Âæ™ÁéØÊ®°Âºè
+	DMA_InitStructure.DMA_Priority = DMA_Priority_High; //DMAÈÄöÈÅì xÊã•ÊúâÈ´ò‰ºòÂÖàÁ∫ß 
+	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;  //DMAÈÄöÈÅìxÊ≤°ÊúâËÆæÁΩÆ‰∏∫ÂÜÖÂ≠òÂà∞ÂÜÖÂ≠ò‰º†Ëæì
 	DMA_Init(DMA1_Channel1, &DMA_InitStructure);  //
 	
 	DMA_Cmd(DMA1_Channel1, ENABLE);
 }
 
 /*******************************************************************
-≥Ã–Úπ¶ƒ‹£∫ADC≤…ºØ÷µ◊™ªª
-≥Ã–Ú∞Ê±æ£∫V1.0
-»’    ∆⁄£∫ 2019/5/30 
-◊˜    ’ﬂ£∫Orange
-–ﬁ    ∏ƒ£∫Œﬁ
+Á®ãÂ∫èÂäüËÉΩÔºöADCÈááÈõÜÂÄºËΩ¨Êç¢
+Á®ãÂ∫èÁâàÊú¨ÔºöV1.0
+Êó•    ÊúüÔºö 2019/5/30 
+‰Ωú    ËÄÖÔºöOrange
+‰øÆ    ÊîπÔºöÊó†
 *******************************************************************/
 
 static void ADC_Convert(void)
@@ -198,11 +198,11 @@ static void ADC_Convert(void)
 }
 	   
 /*******************************************************************
-≥Ã–Úπ¶ƒ‹£∫µÁª˙ÀŸ∂»µ≤Œªµƒº∆À„
-≥Ã–Ú∞Ê±æ£∫V1.0
-»’    ∆⁄£∫ 2019/5/30 
-◊˜    ’ﬂ£∫Orange
-–ﬁ    ∏ƒ£∫Œﬁ
+Á®ãÂ∫èÂäüËÉΩÔºöÁîµÊú∫ÈÄüÂ∫¶Êå°‰ΩçÁöÑËÆ°ÁÆó
+Á®ãÂ∫èÁâàÊú¨ÔºöV1.0
+Êó•    ÊúüÔºö 2019/5/30 
+‰Ωú    ËÄÖÔºöOrange
+‰øÆ    ÊîπÔºöÊó†
 *******************************************************************/
 
 static u8 *SpdMode_Select(u16 adc_val, u8 mtr_type)
@@ -211,11 +211,11 @@ static u8 *SpdMode_Select(u16 adc_val, u8 mtr_type)
 	u8 tmp = 0x02;
 	u8 cnt = 0x00;
 	
-	Spd_Mode[MODE_STS] |= mtr_type;   //0x01¥˙±Ì÷˜µÁª˙£¨0x02¥˙±Ì¿©’πµÁª˙
+	Spd_Mode[MODE_STS] |= mtr_type;   //0x01‰ª£Ë°®‰∏ªÁîµÊú∫Ôºå0x02‰ª£Ë°®Êâ©Â±ïÁîµÊú∫
 	
 	if(0x02 == KEY_Scan())
 	{
-		Spd_Mode[MODE_STS] = (Spd_Mode[MODE_STS]&mtr_type) | 0x08;                 //Õ£÷πƒ£ Ω
+		Spd_Mode[MODE_STS] = (Spd_Mode[MODE_STS]&mtr_type) | 0x08;                 //ÂÅúÊ≠¢Ê®°Âºè
 	}
 	else
 	{
@@ -234,19 +234,19 @@ static u8 *SpdMode_Select(u16 adc_val, u8 mtr_type)
 	if(adc_val >= MOTR_MIDVAL)
 	{
 		cnt = (adc_val-MOTR_MIDVAL+ADC_OFFSET) / MOTR_ADDVAL;
-		Spd_Mode[MODE_STS] = (Spd_Mode[MODE_STS]&mtr_type) | 0x20;                 //’˝◊™ƒ£ Ω
+		Spd_Mode[MODE_STS] = (Spd_Mode[MODE_STS]&mtr_type) | 0x20;                 //Ê≠£ËΩ¨Ê®°Âºè
 	}
 	else
 	{
 		cnt = (MOTR_MIDVAL-adc_val+ADC_OFFSET) / MOTR_ADDVAL;
-		Spd_Mode[MODE_STS] = (Spd_Mode[MODE_STS]&mtr_type) | 0x10;                 //∑¥◊™ƒ£ Ω
+		Spd_Mode[MODE_STS] = (Spd_Mode[MODE_STS]&mtr_type) | 0x10;                 //ÂèçËΩ¨Ê®°Âºè
 	}
 	
 	if(cnt <= (MOTR_MAXVAL-MOTR_MIDVAL)/MOTR_ADDVAL)
 	{
 		if(0 == cnt)
 		{
-			Spd_Mode[MODE_STS] = (Spd_Mode[MODE_STS]&mtr_type) | 0x04;               //≥ı ºªØƒ£ Ω
+			Spd_Mode[MODE_STS] = (Spd_Mode[MODE_STS]&mtr_type) | 0x04;               //ÂàùÂßãÂåñÊ®°Âºè
 			Spd_Mode[MODE_VAL] &= 0xfe;
 		}
 		else
@@ -265,11 +265,11 @@ static u8 *SpdMode_Select(u16 adc_val, u8 mtr_type)
 }
 
 /*******************************************************************
-≥Ã–Úπ¶ƒ‹£∫∂Êª˙Ω«∂»µƒº∆À„
-≥Ã–Ú∞Ê±æ£∫V1.0
-»’    ∆⁄£∫ 2019/5/30 
-◊˜    ’ﬂ£∫Orange
-–ﬁ    ∏ƒ£∫Œﬁ
+Á®ãÂ∫èÂäüËÉΩÔºöËàµÊú∫ËßíÂ∫¶ÁöÑËÆ°ÁÆó
+Á®ãÂ∫èÁâàÊú¨ÔºöV1.0
+Êó•    ÊúüÔºö 2019/5/30 
+‰Ωú    ËÄÖÔºöOrange
+‰øÆ    ÊîπÔºöÊó†
 *******************************************************************/
 
 static u8 StrMode_Select(u16 adc_val)
@@ -293,7 +293,7 @@ static u8 StrMode_Select(u16 adc_val)
 		
 		if(0 == cnt)
 		{
-			Str_Mode = 0x00;       //÷–Œª
+			Str_Mode = 0x00;       //‰∏≠‰Ωç
 		}
 		else
 		{
@@ -306,7 +306,7 @@ static u8 StrMode_Select(u16 adc_val)
 		
 		if(0 == cnt)
 		{
-			Str_Mode = 0x00;       //÷–Œª
+			Str_Mode = 0x00;       //‰∏≠‰Ωç
 		}
 		else
 		{
@@ -318,11 +318,11 @@ static u8 StrMode_Select(u16 adc_val)
 }
 
 /*******************************************************************
-≥Ã–Úπ¶ƒ‹£∫µÁª˙◊¥Ã¨°¢ÀŸ∂»µ≤ŒªµƒΩ‚Œˆ
-≥Ã–Ú∞Ê±æ£∫V1.0
-»’    ∆⁄£∫ 2019/5/30 
-◊˜    ’ﬂ£∫Orange
-–ﬁ    ∏ƒ£∫Œﬁ
+Á®ãÂ∫èÂäüËÉΩÔºöÁîµÊú∫Áä∂ÊÄÅ„ÄÅÈÄüÂ∫¶Êå°‰ΩçÁöÑËß£Êûê
+Á®ãÂ∫èÁâàÊú¨ÔºöV1.0
+Êó•    ÊúüÔºö 2019/5/30 
+‰Ωú    ËÄÖÔºöOrange
+‰øÆ    ÊîπÔºöÊó†
 *******************************************************************/
 
 static void MTORMode_Anly(void)
@@ -339,11 +339,11 @@ static void MTORMode_Anly(void)
 }
 
 /*******************************************************************
-≥Ã–Úπ¶ƒ‹£∫∂Êª˙◊¥Ã¨°¢ÀŸ∂»µ≤ŒªµƒΩ‚Œˆ
-≥Ã–Ú∞Ê±æ£∫V1.0
-»’    ∆⁄£∫ 2019/5/30 
-◊˜    ’ﬂ£∫Orange
-–ﬁ    ∏ƒ£∫Œﬁ
+Á®ãÂ∫èÂäüËÉΩÔºöËàµÊú∫Áä∂ÊÄÅ„ÄÅÈÄüÂ∫¶Êå°‰ΩçÁöÑËß£Êûê
+Á®ãÂ∫èÁâàÊú¨ÔºöV1.0
+Êó•    ÊúüÔºö 2019/5/30 
+‰Ωú    ËÄÖÔºöOrange
+‰øÆ    ÊîπÔºöÊó†
 *******************************************************************/
 
 static void STERMode_Anly(void)
@@ -354,11 +354,11 @@ static void STERMode_Anly(void)
 }
 
 /*******************************************************************
-≥Ã–Úπ¶ƒ‹£∫–ÓµÁ≥ÿµÁ—πµƒ∂¡»°
-≥Ã–Ú∞Ê±æ£∫V1.0
-»’    ∆⁄£∫ 2019/5/30 
-◊˜    ’ﬂ£∫Orange
-–ﬁ    ∏ƒ£∫Œﬁ
+Á®ãÂ∫èÂäüËÉΩÔºöËìÑÁîµÊ±†ÁîµÂéãÁöÑËØªÂèñ
+Á®ãÂ∫èÁâàÊú¨ÔºöV1.0
+Êó•    ÊúüÔºö 2019/5/30 
+‰Ωú    ËÄÖÔºöOrange
+‰øÆ    ÊîπÔºöÊó†
 *******************************************************************/
 
 static u16 R_BatVol(void)
