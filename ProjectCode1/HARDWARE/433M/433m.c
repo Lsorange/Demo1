@@ -69,7 +69,7 @@ static void Send_Data(void);
 static void RData_Init(void);
 static void Deal_RecvData(void);
 static boolean Dect_CRC(void);
-
+static boolean Is_Concted(void);
 
 /*****************************************************************************
 程序功能：433M模块的回调函数, 10ms task
@@ -311,54 +311,54 @@ static void Send_Data(void)
 		}
 	}
 
-/*****************************************************************************
-程序功能：判断433M模块连接的状态
-程序版本：V1.0
-入口参数：无
-返回参数：无
-日    期：2019/6/18
-作    者：Orange
-修    改：无
-******************************************************************************/
+	/*****************************************************************************
+	程序功能：判断433M模块连接的状态
+	程序版本：V1.0
+	入口参数：无
+	返回参数：无
+	日    期：2019/6/18
+	作    者：Orange
+	修    改：无
+	******************************************************************************/
 
-static boolean Is_Concted(void)
-{
-	if(DataCont_Sts == RX_Data[DataSts])
+	static boolean Is_Concted(void)
 	{
-		return CONT_OK;
-	}
-	else
-	{
-		//do nothing
-	}
-	
-	return CONT_ERR;
-}
+		if(DataCont_Sts == RX_Data[DataSts])
+		{
+			return CONT_OK;
+		}
+		else
+		{
+			//do nothing
+		}
 
-/*****************************************************************************
-程序功能：核对数据校验位的结果
-程序版本：V1.0
-入口参数：无
-返回参数：无
-日    期：2019/6/18
-作    者：Orange
-修    改：无
-******************************************************************************/
+		return CONT_ERR;
+	}
 
-static boolean Dect_CRC(void)
-{
-	if((CRC_Data[0] == RX_Data[CrcStrt]) && 
-		 (CRC_Data[1] == RX_Data[CrcEnd]))
+	/*****************************************************************************
+	程序功能：核对数据校验位的结果
+	程序版本：V1.0
+	入口参数：无
+	返回参数：无
+	日    期：2019/6/18
+	作    者：Orange
+	修    改：无
+	******************************************************************************/
+
+	static boolean Dect_CRC(void)
 	{
-		return CRC_OK;
+		if((CRC_Data[0] == RX_Data[CrcStrt]) && 
+			 (CRC_Data[1] == RX_Data[CrcEnd]))
+		{
+			return CRC_OK;
+		}
+		else
+		{
+			//do nothing
+		}
+
+		return CRC_ERR;
 	}
-	else
-	{
-		//do nothing
-	}
-	
-	return CRC_ERR;
-}
 
 #endif
 
