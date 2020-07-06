@@ -129,7 +129,7 @@ void TIM1_UP_IRQHandler(void)
 			//do nothing
 		}
 		
-		/****电量显示模块1000ms任务定时轮询的flag****/
+		/****电量显示模块100ms任务定时轮询的flag****/
 		Tsk100ms_Cnt++;
 		if(Tsk100ms_Cnt >= Task3_Cnt)
 		{
